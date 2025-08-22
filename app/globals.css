@@ -1,26 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
+
+
+*{
+    font-family: "Poppins", sans-serif;
+
+}
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-zinc-950 text-zinc-200 antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px; /* rounded-xl + 2px */
+    background: conic-gradient(from 180deg at 50% 50%, #8B5CF6, #EC4899, #6366F1, #8B5CF6);
+    animation: border-spin 4s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.group:hover .glow-border::before {
+    opacity: 1;
+}
+.shimmer-bg {
+    background-image: linear-gradient(110deg, transparent 20%, #18181b 40%, #18181b 60%, transparent 80%);
+    background-size: 200% 100%;
 }
